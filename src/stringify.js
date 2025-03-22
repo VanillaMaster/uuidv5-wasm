@@ -23,7 +23,7 @@ export const byteToHex = [
  * @returns { string }
  */
 export function stringify(arr) {
-    const [i0 , i1, i2, i3] = arr;
+    const [i0, i1, i2, i3] = arr;
     return (
         byteToHex[i0 >> 0x18 & 0xFF] +
         byteToHex[i0 >> 0x10 & 0xFF] +

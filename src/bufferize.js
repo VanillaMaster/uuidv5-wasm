@@ -3,7 +3,7 @@
  * @returns { Uint8Array }
  */
 export function bufferize(arr) {
-    const [i0 , i1, i2, i3] = arr;
+    const [i0, i1, i2, i3] = arr;
     return Uint8Array.of(
         i0 >> 0x18 & 0xFF,
         i0 >> 0x10 & 0xFF,
