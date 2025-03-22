@@ -27,7 +27,6 @@ size_t block_offset;
 uint32_t state[5];
 uint64_t count;
 
-
 void hash_block() {
     uint32_t a = state[0], b = state[1], c = state[2], d = state[3], e = state[4];
 
