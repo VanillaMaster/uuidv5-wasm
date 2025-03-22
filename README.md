@@ -6,7 +6,7 @@ sync uuid v5 implementation
 
 ## installation
 ```
-npm install  git+https://github.com/VanillaMaster/uuidv5-wasm.git
+npm install git+https://github.com/VanillaMaster/uuidv5-wasm.git
 ```
 
 ## example
