@@ -51,6 +51,18 @@ export const NameSpace_X500 = new Uint8Array([
     0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8
 ])
 
+/**
+ * @param { boolean } ok 
+ * @param { string } message 
+ * @param { new (message: string) => Error } [Error] 
+ * @returns { asserts ok }
+ * 
+ * @__NO_SIDE_EFFECTS__
+ */
+export function assert(ok, message, Error = globalThis.Error) {
+    if (!ok) throw new Error(message);
+}
+
 const encoder = new TextEncoder();
 
 /**
@@ -58,16 +70,15 @@ const encoder = new TextEncoder();
  * @param { Uint8Array } namespace 
  */
 export function v5(value, namespace) {
+    assert(namespace.length === 16, "Unexpected size of namespace");
     init();
-    while (namespace.length > 0) {
-        const length = Math.min(namespace.length, 1024);
-        buffer.set(namespace.subarray(0, length));
-        namespace = namespace.subarray(length);
-        hash(length);
-    }
-    while (value.length > 0) {
-        const { read, written } = encoder.encodeInto(value, buffer);
+    buffer.set(namespace);
+    hash(16);
+    let { read, written } = encoder.encodeInto(value, buffer);
+    hash(written);
+    while (read < value.length) {
         value = value.substring(read);
+        ({ read, written } = encoder.encodeInto(value, buffer));
         hash(written);
     }
     finalize();
@@ -79,16 +90,15 @@ export function v5(value, namespace) {
  * @param { Uint8Array } namespace 
  */
 export function v5Bytes(value, namespace) {
+    assert(namespace.length === 16, "Unexpected size of namespace");
     init();
-    while (namespace.length > 0) {
-        const length = Math.min(namespace.length, 1024);
-        buffer.set(namespace.subarray(0, length));
-        namespace = namespace.subarray(length);
-        hash(length);
-    }
-    while (value.length > 0) {
-        const { read, written } = encoder.encodeInto(value, buffer);
+    buffer.set(namespace);
+    hash(16);
+    let { read, written } = encoder.encodeInto(value, buffer);
+    hash(written);
+    while (read < value.length) {
         value = value.substring(read);
+        ({ read, written } = encoder.encodeInto(value, buffer));
         hash(written);
     }
     finalize();
