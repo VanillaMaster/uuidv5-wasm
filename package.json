@@ -13,7 +13,7 @@
     "description": "sync uuidv5 implementation in wasm",
     "type": "module",
     "scripts": {
-        "build:wasm": "clang --target=wasm32 -O3 -flto -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export-all -Wl,--lto-O3 -Wl,-z,stack-size=63376 -Wl,--initial-memory=65536 -Wl,--initial-memory=65536 -o src/sha1.wasm src/sha1.c"
+        "build:wasm": "clang --target=wasm32 -O3 -flto -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export-all -Wl,--lto-O3 -Wl,-z,stack-size=63376 -Wl,--initial-memory=65536 -Wl,--max-memory=65536 -o src/sha1.wasm src/sha1.c"
     },
     "exports": {
         ".": "./src/uuidv5.js",
