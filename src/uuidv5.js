@@ -28,7 +28,7 @@ export const NameSpace_URL = new Uint8Array([
 ])
 
 /**
- * Name string is an X.500 DN (in DER or a text output format)
+ * Name string is an ISO OID
  * 
  * [UUID RFC](https://www.rfc-editor.org/rfc/rfc4122)
  */
@@ -40,7 +40,7 @@ export const NameSpace_OID = new Uint8Array([
 ])
 
 /**
- * Name string is an ISO OID
+ * Name string is an X.500 DN (in DER or a text output format)
  * 
  * [UUID RFC](https://www.rfc-editor.org/rfc/rfc4122)
  */
