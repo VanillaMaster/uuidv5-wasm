@@ -19,31 +19,30 @@ export const byteToHex = [
 ];
 
 /**
- * @param { Uint32Array } arr 
+ * @param { Uint8Array } bytes 
  * @returns { string }
  */
-export function stringify(arr) {
-    const [i0, i1, i2, i3] = arr;
+export function stringify(bytes) {
     return (
-        byteToHex[i0 >> 0x18 & 0xFF] +
-        byteToHex[i0 >> 0x10 & 0xFF] +
-        byteToHex[i0 >> 0x08 & 0xFF] +
-        byteToHex[i0 >> 0x00 & 0xFF] +
+        byteToHex[bytes[0x3]] +
+        byteToHex[bytes[0x2]] +
+        byteToHex[bytes[0x1]] +
+        byteToHex[bytes[0x0]] +
         "-" +
-        byteToHex[i1 >> 0x18 & 0xFF] +
-        byteToHex[i1 >> 0x10 & 0xFF] +
+        byteToHex[bytes[0x7]] +
+        byteToHex[bytes[0x6]] +
         "-" +
-        byteToHex[i1 >> 0x08 & 0x0F | 0x50] +
-        byteToHex[i1 >> 0x00 & 0xFF] +
+        byteToHex[bytes[0x5] | 0x50] +
+        byteToHex[bytes[0x4]] +
         "-" +
-        byteToHex[i2 >> 0x18 & 0x3F | 0x80] +
-        byteToHex[i2 >> 0x10 & 0xFF] +
+        byteToHex[bytes[0xB] | 0x80] +
+        byteToHex[bytes[0xA]] +
         "-" +
-        byteToHex[i2 >> 0x08 & 0xFF] +
-        byteToHex[i2 >> 0x00 & 0xFF] +
-        byteToHex[i3 >> 0x18 & 0xFF] +
-        byteToHex[i3 >> 0x10 & 0xFF] +
-        byteToHex[i3 >> 0x08 & 0xFF] +
-        byteToHex[i3 >> 0x00 & 0xFF]
+        byteToHex[bytes[0x9]] +
+        byteToHex[bytes[0x8]] +
+        byteToHex[bytes[0xF]] +
+        byteToHex[bytes[0xE]] +
+        byteToHex[bytes[0xD]] +
+        byteToHex[bytes[0xC]]
     ).toLowerCase();
 }

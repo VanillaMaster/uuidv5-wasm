@@ -2,7 +2,7 @@
 const { promise, reject, resolve } = Promise.withResolvers();
 
 /**
- * @param { BufferSource | null } [bytes] 
+ * @param { BufferSource | null } bytes
  * @returns { Promise<void> }
  */
 export default function(bytes = null) {
@@ -16,7 +16,7 @@ export default function(bytes = null) {
 async function instantiate(bytes) {
     wasm = await WebAssembly.instantiate(bytes);
     buffer = new Uint8Array(/**@type { WebAssembly.Memory } */(wasm.instance.exports.memory).buffer, /**@type { WebAssembly.Global } */(wasm.instance.exports.buffer).value, 1024);
-    state = new Uint32Array(/**@type { WebAssembly.Memory } */(wasm.instance.exports.memory).buffer, /**@type { WebAssembly.Global } */(wasm.instance.exports.state).value, 5);
+    state = new Uint8Array(/**@type { WebAssembly.Memory } */(wasm.instance.exports.memory).buffer, /**@type { WebAssembly.Global } */(wasm.instance.exports.state).value, 20);
     ({ init, hash, finalize } = wasm.instance.exports);
 }
 
@@ -24,7 +24,7 @@ async function instantiate(bytes) {
 export let wasm = null;
 /**@type { Uint8Array | null } */
 export let buffer = null;
-/**@type { Uint32Array | null } */
+/**@type { Uint8Array | null } */
 export let state = null;
 /**@type { WebAssembly.ExportValue | null } */
 export let init = null;
