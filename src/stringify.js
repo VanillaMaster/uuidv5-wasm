@@ -32,10 +32,10 @@ export function stringify(bytes) {
         byteToHex[bytes[0x7]] +
         byteToHex[bytes[0x6]] +
         "-" +
-        byteToHex[bytes[0x5] | 0x50] +
+        byteToHex[bytes[0x5] & 0x0F | 0x50] +
         byteToHex[bytes[0x4]] +
         "-" +
-        byteToHex[bytes[0xB] | 0x80] +
+        byteToHex[bytes[0xB] & 0x3F | 0x80] +
         byteToHex[bytes[0xA]] +
         "-" +
         byteToHex[bytes[0x9]] +
